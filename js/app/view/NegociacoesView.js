@@ -1,6 +1,6 @@
-class NegociacoesView {
+class NegociacoesView extends View {
   constructor(elemento) {
-    this._elemento = elemento;
+    super(elemento);
   }
 
   _template(model) {
@@ -38,8 +38,4 @@ class NegociacoesView {
     </table>`;
   }
   // o reduce evita de ter que usar gambiarra com forEach, ja que reduce devolve 1 array com 1 resultado
-
-  update(model) {
-    this._elemento.innerHTML = this._template(model);
-  }
 }
