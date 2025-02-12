@@ -16,21 +16,28 @@ class NegociacoesView {
 
       <tbody>
       ${model.listaNegociacoes
-        .map((n) => {
-          return `
+        .map(
+          (n) => `
           <tr>
             <td>${DateHelper.dataParaTexto(n.data)}</td>
             <td>${n.quantidade}</td>
             <td>${n.valor}</td>
             <td>${n.volume}</td>
-          </tr>`;
-        })
+          </tr>`
+        )
         .join("")}
       </tbody>
 
-      <tfoot></tfoot>
+      <tfoot>
+      <td colspan="3">
+      <td>${model.listaNegociacoes.reduce((total, n) => {
+        return total + n.volume;
+      }, 0.0)}</td>
+      </td>
+      </tfoot>
     </table>`;
   }
+  // o reduce evita de ter que usar gambiarra com forEach, ja que reduce devolve 1 array com 1 resultado
 
   update(model) {
     this._elemento.innerHTML = this._template(model);
